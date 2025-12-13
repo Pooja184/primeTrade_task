@@ -26,10 +26,6 @@ const MyProfile = () => {
       <div className="max-w-2xl mx-auto mt-10 bg-white shadow-md p-6 rounded">
         <h1 className="text-3xl font-bold mb-2">Welcome, {user.name} 👋</h1>
         <p className="text-gray-600">Email: {user.email}</p>
-
-        <p className="mt-4 text-gray-700">
-          Use the navigation above to manage your blogs or update your profile.
-        </p>
       </div>
     </div>
   );

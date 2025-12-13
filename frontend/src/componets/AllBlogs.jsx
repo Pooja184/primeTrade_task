@@ -6,7 +6,8 @@ const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [commentText, setCommentText] = useState({});
   const [comments, setComments] = useState({});
-  const [openComments, setOpenComments] = useState({}); 
+  const [openComments, setOpenComments] = useState({});
+  const [expanded, setExpanded] = useState({});
 
   const fetchBlogs = async () => {
     try {
@@ -69,6 +70,13 @@ const AllBlogs = () => {
     }
   };
 
+  const toggleReadMore = (blogId) => {
+    setExpanded((prev) => ({
+      ...prev,
+      [blogId]: !prev[blogId],
+    }));
+  };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
@@ -101,18 +109,30 @@ const AllBlogs = () => {
                 {new Date(blog.createdAt).toLocaleDateString()}
               </p>
 
-              <p className="text-gray-700 text-sm line-clamp-3">
+              <p
+                className={`text-gray-700 text-sm ${
+                  expanded[blog._id] ? "" : "line-clamp-3"
+                }`}
+              >
                 {blog.description}
               </p>
 
               <button
-                onClick={() => toggleComments(blog._id)}
-                className="text-blue-600 mt-4 text-sm font-semibold"
+                onClick={() => toggleReadMore(blog._id)}
+                className="text-blue-600 text-sm mt-1 font-medium"
               >
-                {openComments[blog._id] ? "Hide Comments" : "View Comments"}
+                {expanded[blog._id] ? "Read Less" : "Read More"}
               </button>
 
-              {/* Comments Section */}
+              <button
+                onClick={() => toggleComments(blog._id)}
+                className="text-blue-600 mt-4 text-sm font-semibold block"
+              >
+                {openComments[blog._id]
+                  ? "Hide Comments"
+                  : "View Comments"}
+              </button>
+
               {openComments[blog._id] && comments[blog._id] && (
                 <div className="mt-4">
                   {comments[blog._id].length === 0 && (

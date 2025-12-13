@@ -1,7 +1,7 @@
 import { count } from "console";
 import cloudinary, { uploadToCloudinary } from "../config/cloudinary.js";
 import Blog from "../models/blog.model.js";
-import Comment from "../models/comments.model.js"
+import Comment from "../models/comments.model.js";
 import fs from "fs";
 
 export const addBlog = async (req, res) => {
@@ -44,34 +44,34 @@ export const addBlog = async (req, res) => {
   }
 };
 
-export const getAllBlogs=async(req,res)=>{
+export const getAllBlogs = async (req, res) => {
   try {
-    const blogs=await Blog.find({});
+    const blogs = await Blog.find({})
+      .populate("author", "name email")
+      .sort({ createdAt: -1 });
     return res.status(200).json({
-      success:true,
-      message:"All Blogs",
-      blogs
-    })
+      success: true,
+      message: "All Blogs",
+      blogs,
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
-    
   }
-}
+};
 
-export const getUserBlogs=async(req,res)=>{
+export const getUserBlogs = async (req, res) => {
   try {
-    const userId=req.userId;
-    const blogs=await Blog.find({author:userId}).sort({createdAt:-1});
+    const userId = req.userId;
+    const blogs = await Blog.find({ author: userId }).sort({ createdAt: -1 });
     return res.status(200).json({
-      success:true,
-      count:blogs.length,
-      blogs
-    })
+      success: true,
+      count: blogs.length,
+      blogs,
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
-    
   }
-}
+};
 export const addComment = async (req, res) => {
   try {
     const { blogId } = req.params;
@@ -91,7 +91,7 @@ export const addComment = async (req, res) => {
         message: "Blog not found",
       });
     }
-    
+
     const comment = await Comment.create({
       blog: blogId,
       author: userId,
@@ -139,7 +139,6 @@ export const getBlogComments = async (req, res) => {
       count: comments.length,
       comments,
     });
-
   } catch (error) {
     console.error("Get Comments Error:", error);
     return res.status(500).json({
@@ -153,10 +152,7 @@ export const getSingleBlog = async (req, res) => {
   try {
     const { blogId } = req.params;
 
-    const blog = await Blog.findById(blogId).populate(
-      "author",
-      "name email"
-    );
+    const blog = await Blog.findById(blogId).populate("author", "name email");
 
     if (!blog) {
       return res.status(404).json({
@@ -219,7 +215,6 @@ export const editBlog = async (req, res) => {
       message: "Blog updated successfully",
       blog,
     });
-
   } catch (error) {
     console.error("Edit Blog Error:", error);
     return res.status(500).json({
@@ -259,7 +254,6 @@ export const deleteBlog = async (req, res) => {
       success: true,
       message: "Blog deleted successfully",
     });
-
   } catch (error) {
     console.error("Delete Blog Error:", error);
     return res.status(500).json({
@@ -268,4 +262,3 @@ export const deleteBlog = async (req, res) => {
     });
   }
 };
-
