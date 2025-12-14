@@ -18,6 +18,12 @@ export const register = async (req, res) => {
         .json({ success: false, message: "Password do not match" });
     }
 
+    if(password.length<6){
+      return res.status(400).json({
+        success:false,
+        message:"Password is too short"
+      })
+    }
     const existingUser = await Auth.findOne({ email });
 
     if (existingUser) {
@@ -94,6 +100,7 @@ export const login=async(req,res)=>{
     maxAge: 7 * 24 * 60 * 60 * 1000,
    })
 
+   console.log(user.email,"Login")
    return res.status(200).json({
     success:true,
     token,
