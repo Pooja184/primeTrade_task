@@ -16,7 +16,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: true,
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -25,7 +25,6 @@ app.use(
 app.get("/", (req, res) => {
   res.send("Backend is running ");
 });
-
 
 app.use('/api/v1',mainRouter);
 
