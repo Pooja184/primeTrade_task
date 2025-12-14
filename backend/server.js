@@ -8,6 +8,7 @@ import mainRouter from "./src/routes/index.js";
 dotenv.config();
 
 const app = express();
+connectDB();
 
 const corsOptions = {
   origin: true, 
@@ -16,7 +17,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); 
-connectDB();
 
 app.use(express.json());  
 app.use(cookieParser());
