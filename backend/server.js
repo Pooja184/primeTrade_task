@@ -22,6 +22,11 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  res.send("Backend is running ");
+});
+
+
 app.use('/api/v1',mainRouter);
 
 
