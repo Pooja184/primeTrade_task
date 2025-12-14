@@ -16,7 +16,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "https://primetrade-task-blog-application-1b3a.onrender.com",
+    origin: "https://primetradeblog-application.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
