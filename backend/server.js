@@ -16,7 +16,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "https://primetradeblog-application-g6dfqkqul-pooja-bhambids-projects.vercel.app",
+    origin: "https://prime-trade-blog.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
