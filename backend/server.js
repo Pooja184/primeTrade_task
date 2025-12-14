@@ -16,7 +16,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://primetrade-task-blog-application-1b3a.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
