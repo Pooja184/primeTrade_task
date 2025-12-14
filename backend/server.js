@@ -9,11 +9,6 @@ dotenv.config();
 
 const app = express();
 
-
-app.use(express.json());
-app.use(cookieParser());
-connectDB();
-
 app.use(
   cors({
     origin: "https://prime-trade-blog.vercel.app",
@@ -21,6 +16,12 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(express.json());
+app.use(cookieParser());
+connectDB();
+
+
 
 app.get("/", (req, res) => {
   res.send("Backend is running ");
