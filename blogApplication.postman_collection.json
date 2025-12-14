@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "3dbe2f62-c986-4aa9-9151-f14d4bc13722",
+		"name": "blogApplication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33214776"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Pooja\",\r\n    \"email\":\"p@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"confirmPassword\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auth/register",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"p@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auth/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}/auth/logout",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "blogs",
+			"item": [
+				{
+					"name": "my-blogs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/blog/my-blogs",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								"my-blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-blogs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "My First Blog",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "This is my first blog created using MERN stack",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/pooja/OneDrive/Pictures/Screenshots/e-commerce.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/blog/add-blogs",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								"add-blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all-blogs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/blog/all-blogs",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								"all-blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-Single-Blog",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/blog/:blogId",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								":blogId"
+							],
+							"variable": [
+								{
+									"key": "blogId",
+									"value": "693dadccf57849a5f464b7a0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-comment",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"text\": \"This blog is very informative!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/blog/:blogId/comments",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								":blogId",
+								"comments"
+							],
+							"variable": [
+								{
+									"key": "blogId",
+									"value": "693dadccf57849a5f464b7a0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"text\": \"This blog is very informative!\"\r\n}"
+						},
+						"url": {
+							"raw": "{{server}}/blog/:blogId/comments",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								":blogId",
+								"comments"
+							],
+							"variable": [
+								{
+									"key": "blogId",
+									"value": "693dadccf57849a5f464b7a0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit-blog",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Getting Started with MERN Stack.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/blog/:blogId",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								":blogId"
+							],
+							"variable": [
+								{
+									"key": "blogId",
+									"value": "693dadccf57849a5f464b7a0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-blog",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Getting Started with MERN Stack.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/blog/:blogId",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"blog",
+								":blogId"
+							],
+							"variable": [
+								{
+									"key": "blogId",
+									"value": "693db51ff57849a5f464b810"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
