@@ -10,6 +10,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // login request 
       await api.post("/auth/login", form);
       navigate("/dashboard");
     } catch (error) {

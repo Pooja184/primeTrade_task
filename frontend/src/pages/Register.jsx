@@ -18,8 +18,8 @@ const Register = () => {
     try {
       await api.post("/auth/register", form);
 
-      toast.success("Registration Successful! 🎉");
-
+      toast.success("Registration Successful!");
+      // use timeout function so it takes time to redirect
       setTimeout(() => {
         navigate("/dashboard");
       }, 800);
@@ -36,6 +36,7 @@ const Register = () => {
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
 
+        {/* use one input type instead of separate input for each field, it reduces code duplication */}
         {["name", "email", "password", "confirmPassword"].map((field) => (
           <input
             key={field}
