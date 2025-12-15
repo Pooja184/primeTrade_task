@@ -12,6 +12,7 @@ const AllBlogs = () => {
   const fetchBlogs = async () => {
     try {
       const res = await api.get("/blog/all-blogs");
+      // console.log(res.data);
       setBlogs(res.data.blogs);
     } catch (error) {
       toast.error("Failed to load blogs");
@@ -30,6 +31,7 @@ const AllBlogs = () => {
     }
   };
 
+  // this func is  like a flag to open and close comments
   const toggleComments = async (blogId) => {
     if (openComments[blogId]) {
       setOpenComments((prev) => ({
