@@ -21,6 +21,7 @@ const MyBlogs = () => {
   };
 
   const handleDelete = async (blogId) => {
+    // console.log(blogId)
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this blog?"
     );
