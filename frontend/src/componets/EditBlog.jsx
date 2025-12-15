@@ -33,10 +33,12 @@ const EditBlog = () => {
   }, []);
 
   const handleImageChange = (e) => {
+    // Get the first selected file from the input
     const file = e.target.files[0];
     if (!file) return;
 
     setImage(file);
+     // Create a temporary preview url to display the image before upload
     setPreview(URL.createObjectURL(file));
   };
 
