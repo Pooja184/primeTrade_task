@@ -32,11 +32,13 @@ const AddBlog = () => {
     try {
       setLoading(true);
 
+      // use form data because we are dealing with files
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
       formData.append("image", image);
 
+      // console.log(formData)
       await api.post("/blog/add-blog", formData);
 
       toast.success("Blog added successfully ");
@@ -49,7 +51,6 @@ const AddBlog = () => {
       setTimeout(() => {
         navigate("/dashboard");
       }, 800);
-
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to add blog");
     } finally {
@@ -66,9 +67,7 @@ const AddBlog = () => {
           onSubmit={handleSubmit}
           className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg"
         >
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            Add New Blog
-          </h2>
+          <h2 className="text-2xl font-bold mb-6 text-center">Add New Blog</h2>
 
           <input
             type="text"
@@ -92,6 +91,7 @@ const AddBlog = () => {
             onChange={handleImageChange}
           />
 
+          {/* it shows instant preview of the img */}
           {preview && (
             <img
               src={preview}
